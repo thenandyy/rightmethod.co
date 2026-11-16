@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "General Sans", "Neue Montreal", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-obsidian: #000000;
+  --color-obsidian-soft: #050505;
+  --color-surface-1: #0a0a0a;
+  --color-surface-2: #121212;
+  --color-surface-3: #181818;
+  --color-ink: #f2f2f2;
+  --color-ink-muted: rgba(255, 255, 255, 0.6);
+  --color-ink-subtle: rgba(255, 255, 255, 0.42);
+  --color-hairline: rgba(255, 255, 255, 0.1);
+  --color-cobalt: #2c86f6;
+}
+
+@layer base {
+  html {
+    background-color: #000000;
+    color: #f2f2f2;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #000000;
+    color: #f2f2f2;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 1.5px solid #2c86f6;
+    outline-offset: 3px;
+  }
+}
+
+.font-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle Looped-inspired editorial grain */
+.editorial-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+/* Subtle BingeLabs-inspired architectural vertical flutes */
+.editorial-flutes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.018) 0px,
+    rgba(255, 255, 255, 0.018) 1px,
+    transparent 1px,
+    transparent 96px
+  );
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  animation: marqueeLeft 38s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marqueeRight 42s linear infinite;
+}
+
+.animate-ce-wave-right {
+  animation: marqueeRight 28s linear infinite;
+}
+
+@keyframes heroOrbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes heroOrbitCounterSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.hero-orbit-ring {
+  animation: heroOrbitSpin 64s linear infinite;
+  will-change: transform;
+}
+
+.hero-orbit-upright {
+  animation: heroOrbitCounterSpin 64s linear infinite;
+  will-change: transform;
+}
+
+.hero-orbit-stage:hover .hero-orbit-ring,
+.hero-orbit-stage:hover .hero-orbit-upright,
+.hero-orbit-stage:focus-within .hero-orbit-ring,
+.hero-orbit-stage:focus-within .hero-orbit-upright {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee-left,
+  .animate-marquee-right,
+  .animate-ce-wave-right,
+  .hero-orbit-ring,
+  .hero-orbit-upright {
+    animation: none;
+  }
+}
